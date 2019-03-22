@@ -10,3 +10,10 @@ See `Makefile` for targets, but in short:
 * `make dynamicd` - tests shared library dynamically loaded from D main
 * `make staticc` - tests static linked library called from C main
 * `make dynamicc` - tests shared library dynamically loaded from C main
+
+Some resources I've put this together from:
+* https://github.com/dlang/druntime/commit/f60eb358ccbc14a1a5fc1774eab505ed0132e999
+* https://dlang.org/articles/dll-linux.html
+* https://forum.dlang.org/post/ounui4$171a$1@digitalmars.com
+* https://forum.dlang.org/post/ontmtemtmwlmalejbuyb@forum.dlang.org
+* https://forum.dlang.org/post/nibvodewzbzwmmvdortd@forum.dlang.org
