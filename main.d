@@ -75,6 +75,10 @@ void main()
 		ep2 = cast(FN)&entry_point2;
 	}
 
+	// try with main thread first
+	threadFun(cast(void*)ep1);
+	threadFun(cast(void*)ep2);
+
 	{
 		pthread_t thread;
 		auto status = pthread_create(&thread, null, &threadFun, cast(void*)ep1);

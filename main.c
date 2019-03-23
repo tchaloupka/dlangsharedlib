@@ -43,6 +43,10 @@ int main(int argc, char* argv[]) {
 	// init druntime
 	assert(rt_init() == 1);
 
+	// try with main thread first
+	threadFun(ep1);
+	threadFun(ep2);
+
 	{
 		pthread_t thread;
 		int status = pthread_create(&thread, NULL, &threadFun, ep1);
