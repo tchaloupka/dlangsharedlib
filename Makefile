@@ -23,7 +23,7 @@ dynamicd: dynamiclib
 	./main
 
 staticc: staticlib
-	gcc -o main -g main.c worker.o /usr/lib64/libphobos2.a -ldl -lpthread
+	gcc -o main -g main.c worker.o -lphobos2 -ldl -lpthread
 	./main
 
 dynamicc: dynamiclib
