@@ -32,16 +32,23 @@ void* entry_point2(void*)
 
 	// This thread gets registered in druntime, does some work and gets
 	// unregistered to be cleaned up manually
-	thread_attachThis();
-	rt_moduleTlsCtor();
+	if (!thread_isMainThread()) // thread_attachThis will hang otherwise
+	{
+		printf("+entry_point2 - thread_attachThis()\n");
+		thread_attachThis();
+		rt_moduleTlsCtor();
+	}
 
 	// simulate GC work
 	auto x = new int[100];
-
 	GC.collect();
 
-	rt_moduleTlsDtor();
-	thread_detachThis();
+	if (!thread_isMainThread())
+	{
+		printf("+entry_point2 - thread_detachThis()\n");
+		rt_moduleTlsDtor();
+		thread_detachThis();
+	}
 	return null;
 }
 
