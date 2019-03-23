@@ -1,5 +1,6 @@
 module main;
 
+import core.runtime;
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.sys.posix.pthread;
@@ -37,7 +38,7 @@ void main()
 
 	version (DYNAMIC)
 	{
-		void* lh = dlopen("libworker.so", RTLD_LAZY);
+		void* lh = Runtime.loadLibrary("libworker.so");
 		if (!lh)
 		{
 			fprintf(stderr, "dlopen error: %s\n", dlerror());
@@ -48,7 +49,7 @@ void main()
 		scope (exit)
 		{
 			printf("unloading libworker.so\n");
-			dlclose(lh);
+			Runtime.unloadLibrary(lh);
 		}
 
 		ep1 = cast(FN)dlsym(lh, "entry_point1");
