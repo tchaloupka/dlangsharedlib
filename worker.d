@@ -1,5 +1,7 @@
 module worker;
 
+import utils;
+
 import core.memory;
 import core.stdc.stdio;
 import core.thread;
@@ -12,6 +14,9 @@ void* entry_point1(void*)
 {
 	printf("+entry_point1\n");
 	scope (exit) printf("-entry_point1\n");
+
+	// call method from utils
+	test();
 
 	// try collecting - GC must ignore this call because this thread
 	// is not registered in runtime

@@ -7,14 +7,14 @@ clean:
 	rm -f main
 
 staticlib: clean
-	dmd -c worker.d -g -debug
+	dmd -c worker.d utils.d -g -debug
 
 dynamiclib: clean
-	dmd -c worker.d -fPIC -g -debug
-	dmd -oflibworker.so worker.o -shared -defaultlib=libphobos2.so
+	dmd -c worker.d utils.d -fPIC -g -debug
+	dmd -oflibworker.so worker.o utils.o -shared -defaultlib=libphobos2.so
 
 staticd: staticlib
-	dmd main.d worker.o -g -debug
+	dmd main.d worker.o utils.o -g -debug
 	./main
 
 dynamicd: dynamiclib
@@ -23,7 +23,7 @@ dynamicd: dynamiclib
 	./main
 
 staticc: staticlib
-	gcc -o main -g main.c worker.o -lphobos2 -ldl -lpthread
+	gcc -o main -g main.c worker.o utils.o -lphobos2 -ldl -lpthread
 	./main
 
 dynamicc: dynamiclib
