@@ -65,8 +65,6 @@ extern(C) int lib_init()
 	// init worker thread
 	new Thread(&worker).start();
 
-	Thread.sleep(100.msecs);
-
 	return true;
 }
 
