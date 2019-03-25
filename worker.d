@@ -24,6 +24,8 @@ void* entry_point1(void*)
 	return null;
 }
 
+__gshared int[] data;
+
 extern(C)
 void* entry_point2(void*)
 {
@@ -39,8 +41,11 @@ void* entry_point2(void*)
 		rt_moduleTlsCtor();
 	}
 
-	// simulate GC work
-	auto x = new int[100];
+	// simulate some GC work
+	foreach(_; 0..10)
+	{
+		data = new int[100];
+	}
 	GC.collect();
 
 	if (!thread_isMainThread())

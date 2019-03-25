@@ -33,9 +33,6 @@ void main()
 {
 	printf("+main()\n");
 
-	// allocate some garbage
-	auto x = new int[1000];
-
 	version (DYNAMIC)
 	{
 		void* lh = Runtime.loadLibrary("libworker.so");
@@ -78,7 +75,7 @@ void main()
 
 	// try with main thread first
 	threadFun(cast(void*)ep1);
-	threadFun(cast(void*)ep2);
+	threadFun(cast(void*)ep2); // doesn't work without this
 
 	{
 		pthread_t thread;

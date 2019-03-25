@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 
 	// try with main thread first
 	threadFun(ep1);
-	threadFun(ep2);
+	threadFun(ep2); // doesn't work without this
 
 	{
 		pthread_t thread;
