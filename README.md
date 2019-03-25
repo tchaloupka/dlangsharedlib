@@ -11,6 +11,8 @@ See `Makefile` for targets, but in short:
 * `make staticc` - tests static linked library called from C main
 * `make dynamicc` - tests shared library dynamically loaded from C main
 
+**NOTE**: Currently these are buggy and unreliable. See `workaround` folder for possible workaround, which seems to at least work, but is ugly..
+
 Some resources I've put this together from:
 * https://github.com/dlang/druntime/commit/f60eb358ccbc14a1a5fc1774eab505ed0132e999
 * https://dlang.org/articles/dll-linux.html
